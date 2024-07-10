@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { MovieCard } from "../movie-card/movie-card";
+
 export const MainView = () => {
   const [movies, setMovies] = useState([
 
@@ -11,9 +13,9 @@ export const MainView = () => {
 
   return (
     <div>
-      {movies.map((movies) => {
-        return <div key={movies.id}>{movies.title}</div>;
-      })}
+      {movies.map((movies) => (
+        <MovieCard key={movies.id} movies={movies} />
+      ))}
     </div>
   );
 };

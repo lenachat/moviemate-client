@@ -5847,6 +5847,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
+var _movieCard = require("../movie-card/movie-card");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -5880,18 +5881,16 @@ const MainView = ()=>{
         }
     ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movies)=>{
-            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: movies.title
+        children: movies.map((movies)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                movies: movies
             }, movies.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 15,
-                columnNumber: 16
-            }, undefined);
-        })
+                lineNumber: 17,
+                columnNumber: 9
+            }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 13,
+        lineNumber: 15,
         columnNumber: 5
     }, undefined);
 };
@@ -5905,7 +5904,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"cYXHJ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"uYvBu"}],"cYXHJ":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"cYXHJ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"uYvBu","../movie-card/movie-card":"bwuIu"}],"cYXHJ":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -5935,7 +5934,36 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"lOjBx":[function(require,module,exports) {
+},{}],"bwuIu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$67b2.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const MovieCard = ({ movies })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: movies.title
+    }, void 0, false, {
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 3,
+        columnNumber: 5
+    }, undefined);
+};
+_c = MovieCard;
+var _c;
+$RefreshReg$(_c, "MovieCard");
+
+  $parcel$ReactRefreshHelpers$67b2.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"cYXHJ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"uYvBu"}],"lOjBx":[function(require,module,exports) {
 "use strict";
 var m = require("aaccff5d309d9239");
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
