@@ -18,8 +18,18 @@ export const MainView = () => {
             id: doc._id,
             title: doc.title,
             description: doc.description,
-            director: doc.director.name,
-            genre: doc.genre.name
+            directorName: doc.director.name,
+            directorBio: doc.director.biography,
+            directorBirth: doc.director.birth,
+            directorDeath: doc.director.death,
+            genreName: doc.genre.name,
+            genreDescription: doc.genre.description,
+            image: doc.imagePath,
+            actors: doc.actors.join(', '),
+            year: doc.year,
+            age: doc.age,
+            rating: doc.rating,
+            length: doc.length
           };
         });
         setMovie(movieFromAPI);

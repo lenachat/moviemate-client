@@ -21,7 +21,13 @@ MovieCard.propTypes = {
       biograpyh: PropTypes.string,
       birth: PropTypes.string,
       death: PropTypes.string
-    })
+    }),
+    imagePath: PropTypes.string,
+    actors: PropTypes.arrayOf(PropTypes.string),
+    year: PropTypes.string,
+    age: PropTypes.string,
+    rating: PropTypes.string,
+    length: PropTypes.string,
   }).isRequired,
   onMovieClick: PropTypes.func.isRequired
 };
