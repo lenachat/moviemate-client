@@ -5867,7 +5867,7 @@ const MainView = ()=>{
                     directorDeath: doc.director.death,
                     genreName: doc.genre.name,
                     genreDescription: doc.genre.description,
-                    image: doc.imagePath,
+                    imagePath: doc.imagePath,
                     actors: doc.actors.join(", "),
                     year: doc.year,
                     age: doc.age,
@@ -6770,7 +6770,8 @@ const MovieView = ({ movie, onBackClick })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: movie.image,
+                class: "moviePoster",
+                src: movie.imagePath,
                 alt: ""
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",

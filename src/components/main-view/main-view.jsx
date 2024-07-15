@@ -24,7 +24,7 @@ export const MainView = () => {
             directorDeath: doc.director.death,
             genreName: doc.genre.name,
             genreDescription: doc.genre.description,
-            image: doc.imagePath,
+            imagePath: doc.imagePath,
             actors: doc.actors.join(', '),
             year: doc.year,
             age: doc.age,

@@ -1,1 +1,1 @@
-{"mappings":"AAEA","sources":["src/index.scss"],"sourcesContent":["$color: steelblue;\n\n.moviemate {\n  color: $color;\n}"],"names":[],"version":3,"file":"index.2212206d.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"AAEA;;;;AAIA","sources":["src/index.scss"],"sourcesContent":["$color: steelblue;\n\n.moviemate {\n  color: $color;\n}\n\n.moviePoster {\n  width: 200px;\n  height: auto;\n}"],"names":[],"version":3,"file":"index.2212206d.css.map","sourceRoot":"/__parcel_source_root/"}
