@@ -39,6 +39,7 @@ export const LoginView = ({ onLoggedIn }) => {
           required
           minlength="8" />
       </label>
+      <button type="submit">Submit</button>
     </form>
   );
 };
