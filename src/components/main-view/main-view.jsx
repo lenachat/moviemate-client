@@ -36,7 +36,24 @@ export const MainView = () => {
       });
   }, []);
 
-  if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />;
+  if (selectedMovie) {
+    let similarMovies = movie.filter((movie) => movie.genreName === selectedMovie.genreName);
+    let similarMoviesFiltered = similarMovies.filter((movie) => movie.title !== selectedMovie.title);
+    return (
+      <>
+        <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+        <hr />
+        <h3>Similar Movies</h3>
+        <div>
+          {similarMoviesFiltered.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }} />
+          ))}
+        </div>
+      </>
+    )
+
+  }
+
 
   if (movie.length === 0) return <div className="main-view">The list is empty!</div>;
 
