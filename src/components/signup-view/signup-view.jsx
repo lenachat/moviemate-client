@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const SignupView = ({ onSignedUp }) => {
+export const SignupView = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -16,18 +16,26 @@ export const SignupView = ({ onSignedUp }) => {
       birthday: birthday,
     };
 
-    fetch('https://moviemate-mk9e.onrender.com', {
+    fetch('https://moviemate-mk9e.onrender.com/users', {
       method: "POST",
-      body: JSON.stringify(data),
-    }).then((response) => {
-      if (response.ok) {
-        alert("Signup successful");
-        window.location.reload();
-      } else {
-        alert("Signup failed");
-      }
-    });
-
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log("Signup response: ", data);
+        if (data) {
+          alert("Signup successful");
+          window.location.reload();
+        } else {
+          response.json().then((data) => {
+            alert("Signup failed " + data.message);
+          });
+        }
+      }).catch((error) => {
+        alert('Error:', error.message);
+      });
   };
 
   return (
@@ -41,7 +49,7 @@ export const SignupView = ({ onSignedUp }) => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            minlength="2"
+            minLength="2"
           />
         </label>
         <br />
@@ -52,7 +60,7 @@ export const SignupView = ({ onSignedUp }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            minlength="8"
+            minLength="8"
           />
         </label>
         <br />
@@ -74,7 +82,8 @@ export const SignupView = ({ onSignedUp }) => {
             onChange={(e) => setBirthday(e.target.value)}
           />
         </label>
-        <button type="button" onClick={handleSignup}>
+        <br />
+        <button type="submit">
           Signup
         </button>
       </form>

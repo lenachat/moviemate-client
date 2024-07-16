@@ -7,12 +7,23 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [movie, setMovie] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
   useEffect(() => {
-    fetch("https://moviemate-mk9e.onrender.com/movies")
+    if (!token) {
+      return;
+    }
+
+    fetch("https://moviemate-mk9e.onrender.com/movies",
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
 
@@ -36,17 +47,19 @@ export const MainView = () => {
           };
         });
         setMovie(movieFromAPI);
+      }).catch((error) => {
+        console.error("Error fetching movies: ", error);
       });
-  }, []);
+  }, [token]);
 
 
   if (!user) {
     return (
-    <>
-    <LoginView onLoggedIn={(user) => setUser(user)} />
-      or
-    <SignupView />
-    </>
+      <>
+        <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />
+        or
+        <SignupView />
+      </>
     );
   }
 
@@ -76,7 +89,7 @@ export const MainView = () => {
           <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }} />
         ))}
       </div>
-      <button onClick={() => { setUser(null); }}>
+      <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>
         Logout
       </button>
     </>

@@ -7,20 +7,29 @@ export const LoginView = ({ onLoggedIn }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {
-      access: username,
-      secret: password,
+      username: username,
+      password: password,
     };
 
-    fetch('https://moviemate-mk9e.onrender.com', {
+    fetch('https://moviemate-mk9e.onrender.com/login', {
       method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(data),
-    }).then((response) => {
-      if (response.ok) {
-        onLoggedIn(username);
-      } else {
-        alert("Login failed");
-      }
-    });
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log("Login response: ", data);
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+          onLoggedIn(data);
+        } else {
+          alert("Login failed");
+        }
+      }).catch((error) => {
+        alert('Error:', error.message);
+      });
   };
 
   return (
@@ -30,14 +39,14 @@ export const LoginView = ({ onLoggedIn }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minlength="2" />
+          minLength="2" />
       </label>
       <label>Password:
-        <input type="text"
+        <input type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          minlength="8" />
+          minLength="8" />
       </label>
       <button type="submit">Submit</button>
     </form>
