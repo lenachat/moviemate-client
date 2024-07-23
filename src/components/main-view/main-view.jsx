@@ -15,7 +15,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
   useEffect(() => {
-    if (!token) {
+    if (!user || !token) {
       return;
     }
 
@@ -50,7 +50,7 @@ export const MainView = () => {
       }).catch((error) => {
         console.error("Error fetching movies: ", error);
       });
-  }, [token]);
+  }, [token, user]);
 
 
   if (!user) {
