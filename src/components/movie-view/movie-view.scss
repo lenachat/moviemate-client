@@ -1,0 +1,79 @@
+$primary: #234180;
+$secondary: #fddb2f;
+$body-bg: #192E5A;
+$text-primary: #F6F6F4;
+$box-shadow: 10px 5px 10px #0c152a;
+
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+.card {
+  background-color: $primary;
+  color: $text-primary;
+  box-shadow: $box-shadow;
+  padding: 10px;
+}
+
+.card-img {
+  height: 350px;
+  width: auto;
+  object-fit: contain;
+}
+
+.card-body {
+  color: $text-primary;
+  margin: 0 15px;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.movie-title.col-md-auto {
+  font-size: 1.5em;
+  padding-left: 0;
+
+}
+
+.movie-details.col-md-auto {
+  font-size: 0.8em;
+  padding-right: 0;
+}
+
+.accordion {
+  background-color: $primary;
+  color: $text-primary;
+}
+
+.accordion-body {
+  background-color: $primary;
+  color: $text-primary;
+  border: 1px solid $text-primary;
+}
+
+.accordion .accordion-item {
+  border: none;
+}
+
+button.accordion-button {
+  padding: 0;
+  background-color: $primary;
+}
+
+button.accordion-button.collapsed {
+  color: $text-primary;
+  border: none;
+}
+
+button.accordion-button:not(.collapsed) {
+  padding: 0 5px;
+
+}
+
+button.accordion-button:not(.collapsed)::after {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/></svg>');
+}
+
+button.accordion-button::after {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16" style="fill: white;"><path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/></svg>');
+}

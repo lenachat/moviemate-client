@@ -1,0 +1,49 @@
+$primary: #234180;
+$secondary: #fddb2f;
+$body-bg: #192E5A;
+$text-primary: #F6F6F4;
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+
+.body {
+  background-color: $body-bg;
+  color: $text-primary;
+}
+
+.card {
+  color: $text-primary;
+}
+
+.form-label {
+  color: $text-primary;
+}
+
+input.custom-input-text-color.form-control {
+  color: $text-primary;
+}
+
+
+.name-input:required {
+  border: 1px solid red;
+}
+
+.name-input:valid {
+  border: 1px solid green;
+}
+
+.password-input:required {
+  border: 1px solid red;
+}
+
+.password-input:valid {
+  border: 1px solid green;
+}
+
+.email-input:required {
+  border: 1px solid red;
+}
+
+.email-input:valid {
+  border: 1px solid green;
+}

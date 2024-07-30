@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { Form, Button, Card } from "react-bootstrap";
+
+import "./login-view.scss";
+
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -34,23 +38,36 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Username:
-        <input type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="2" />
-      </label>
-      <label>Password:
-        <input type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength="8" />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <Card border="secondary">
+      <Card.Body>
+        <Card.Title>Log in</Card.Title>
+        <Card.Text>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>Username:
+                <Form.Control type="text" className="custom-input-text-color"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  minLength="2"
+                />
+              </Form.Label>
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Password:
+                <Form.Control type="password" className="custom-input-text-color"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength="8" />
+              </Form.Label>
+            </Form.Group>
+            <Button type="submit">Submit</Button>
+          </Form>
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 

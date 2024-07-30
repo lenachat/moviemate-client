@@ -5,18 +5,20 @@ $text-primary: #F6F6F4;
 
 @import '~bootstrap/scss/bootstrap.scss';
 
+
 .body {
   background-color: $body-bg;
   color: $text-primary;
 }
 
-header {
-  color: $secondary;
-  text-align: center;
-  margin: 10px;
+.card {
+  color: $text-primary;
 }
 
-header h1 {
-  font-size: 2.5em;
-  padding: 10px 0;
+.form-label {
+  color: $text-primary;
+}
+
+input.custom-input-text-color.form-control {
+  color: $text-primary;
 }

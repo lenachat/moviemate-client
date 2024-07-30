@@ -1,0 +1,13 @@
+$primary: #234180;
+$secondary: #fddb2f;
+$body-bg: #192E5A;
+$text-primary: #F6F6F4;
+$box-shadow: 10px 5px 10px #0c152a;
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+.card {
+  background-color: $primary;
+  color: $text-primary;
+  box-shadow: $box-shadow;
+}
