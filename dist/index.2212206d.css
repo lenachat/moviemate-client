@@ -18730,11 +18730,13 @@ header h1, header .h1 {
 }
 
 .movie-title.col-md-auto {
+  color: #f6f6f4;
   padding-left: 0;
   font-size: 1.5em;
 }
 
 .movie-details.col-md-auto {
+  color: #f6f6f4;
   padding-right: 0;
   font-size: .8em;
 }
