@@ -1,0 +1,45 @@
+$primary: #234180;
+$secondary: #fddb2f;
+$body-bg: #192E5A;
+$text-primary: #F6F6F4;
+$box-shadow: 10px 5px 10px #0c152a;
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+.navbar {
+  background-color: $primary;
+  color: $text-primary;
+  margin-bottom: 15px;
+  box-shadow: $box-shadow;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.navbar-brand h1 {
+  font-size: 2.5em;
+  color: $secondary;
+}
+
+button.navbar-toggler {
+  background-color: $primary;
+  color: $text-primary;
+  border: 2px solid $text-primary;
+}
+
+.nav-link {
+  color: $text-primary;
+}
+
+.nav-link:hover {
+  color: $text-primary;
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+
+
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16" style="fill: white;"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></svg>');
+}

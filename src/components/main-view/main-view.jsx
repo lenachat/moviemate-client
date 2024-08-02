@@ -6,6 +6,7 @@ import { SignupView } from "../signup-view/signup-view";
 import { Button, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
 import "./main-view.scss";
 
 export const MainView = () => {
@@ -78,7 +79,8 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <Row className="justify-content-center">
+      <NavigationBar user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
+      <Row className="justify-content-center movies-container">
         <Routes>
           <Route
             path="/signup"

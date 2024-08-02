@@ -10,4 +10,9 @@ $box-shadow: 10px 5px 10px #0c152a;
   background-color: $primary;
   color: $text-primary;
   box-shadow: $box-shadow;
+  margin-bottom: 20px;
+}
+
+.card-title.h5, .card-text{
+  color: $text-primary;
 }
