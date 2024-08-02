@@ -1,8 +1,26 @@
 import { Button, Card, Accordion, Container, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 import "./movie-view.scss";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+  const { movieTitle } = useParams();
+
+
+  // Check if movies array is defined and not empty
+  if (!movies || movies.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  // Find the movie with the matching ID
+  const movie = movies.find((m) => m.title === movieTitle);
+
+  // Check if the movie was found
+  if (!movie) {
+    return <div>Movie not found</div>;
+  }
+  //const movie = movies.find((m) => m.id === movieId);
   return (
     <Card bg="primary" text="text-primary">
       <Card.Img variant="top" className="card-img" src={movie.imagePath} alt="movie poster" />
@@ -40,7 +58,9 @@ export const MovieView = ({ movie, onBackClick }) => {
             </Accordion.Item>
           </Accordion>
         </Card.Text>
-        <Button variant="outline-secondary" onClick={onBackClick}>Go Back</Button>{' '}
+        <Link to={`/movies`}>
+          <Button variant="outline-secondary">Go Back</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
