@@ -3,6 +3,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
 import { Button, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
@@ -158,6 +159,25 @@ export const MainView = () => {
                         <Button variant="outline-secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>
                           Logout
                         </Button>
+                      </Col>
+                    </>
+                  )}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ?
+                  (
+                    <Navigate to="/login" replace />
+                  ) : movies.length === 0 ? (
+                    <Col className="main-view">The list is empty!</Col>
+                  ) : (
+                    <>
+                      <Col xs={12} md={10} lg={8} xl={6}>
+                        <ProfileView user={user} />
                       </Col>
                     </>
                   )}
