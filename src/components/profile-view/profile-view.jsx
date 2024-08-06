@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button } from "react-bootstrap";
 
-export const ProfileView = ({ user }) => {
+import { MovieCard } from '../movie-card/movie-card';
+
+export const ProfileView = ({ movies, user }) => {
   const [userData, setUserData] = useState(user);
   const [formValues, setFormValues] = useState({
     username: user.username,
@@ -9,9 +11,11 @@ export const ProfileView = ({ user }) => {
     email: user.email,
     birthday: user.birthday,
   });
+  const [favMovies, setFavMovies] = useState([]);
+  const userId = userData._id;
 
   useEffect(() => {
-    fetch(`https://moviemate-mk9e.onrender.com/users`, {
+    fetch(`https://moviemate-mk9e.onrender.com/users/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -21,18 +25,23 @@ export const ProfileView = ({ user }) => {
       .then((response) => response.json())
       .then((data) => {
         setUserData(data);
-        console.log(data);
+        console.log('Fetched user data: ', data);
         setFormValues({
           username: data.username,
-          password: data.password,
+         // password: data.password,
           email: data.email,
           birthday: data.birthday
         });
+        let favoriteMovies = String(data.favorites);
+        console.log('Favorite movies: ', favoriteMovies);
+        let filteredMovies = movies.filter((movie) => favoriteMovies.includes(movie.id));
+        setFavMovies(filteredMovies);
+        console.log('Filtered movies: ', filteredMovies);
       })
       .catch((error) => {
         console.error(error.message);
       });
-  }, []);
+  }, [user._id, movies]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +50,7 @@ export const ProfileView = ({ user }) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    const userId = userData._id;
+    //const userId = userData._id;
     //update object only with changed fields
     const updatedValues = {};
     if (formValues.username !== user.username) {
@@ -85,6 +94,18 @@ export const ProfileView = ({ user }) => {
           </div>
         ) : (
           <p>No user data available.</p>
+        )}
+      </div>
+      <div>
+        <h1>Favorite Movies</h1>
+        {favMovies.length === 0 ? (
+          <p>No favorite movies yet.</p>
+        ) : (
+          favMovies.map((movie) => (
+            <div key={movie.id} className="favorite-movie">
+              <MovieCard movie={movie} />
+            </div>
+          ))
         )}
       </div>
       <div>

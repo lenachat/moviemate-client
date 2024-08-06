@@ -177,7 +177,7 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Col xs={12} md={10} lg={8} xl={6}>
-                        <ProfileView user={user} />
+                        <ProfileView user={user} movies={movies}/>
                       </Col>
                     </>
                   )}
