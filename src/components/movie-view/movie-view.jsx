@@ -7,12 +7,6 @@ import "./movie-view.scss";
 export const MovieView = ({ movies }) => {
   const { movieTitle } = useParams();
 
-
-  // Check if movies array is defined and not empty
-  if (!movies || movies.length === 0) {
-    return <div>Loading...</div>;
-  }
-
   // Find the movie with the matching ID
   const movie = movies.find((m) => m.title === movieTitle);
 
@@ -20,7 +14,7 @@ export const MovieView = ({ movies }) => {
   if (!movie) {
     return <div>Movie not found</div>;
   }
-  //const movie = movies.find((m) => m.id === movieId);
+
   return (
     <Card bg="primary" text="text-primary">
       <Card.Img variant="top" className="card-img" src={movie.imagePath} alt="movie poster" />

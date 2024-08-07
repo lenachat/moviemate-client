@@ -55,6 +55,13 @@ export const MainView = () => {
       });
   }, [token, user]);
 
+  const handleAddToFavorites = (updatedUser) => {
+    setUser(updatedUser);
+  };
+
+  const handleRemoveFromFavorites = (updatedUser) => {
+    setUser(updatedUser);
+  };
 
   const MovieDetail = () => {
     const { movieTitle } = useParams();
@@ -71,6 +78,9 @@ export const MainView = () => {
             <MovieCard
               movie={movie}
               onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }}
+              user={user}
+              onFavoriteAdded={handleAddToFavorites}
+              onFavoriteRemoved={handleRemoveFromFavorites}
             />
           </Col>
         ))}
@@ -150,7 +160,12 @@ export const MainView = () => {
                         {movies.map((movie) => (
                           <Col xs={12} sm={6} md={4} lg={3} className="cols" key={movie.id}>
                             <MovieCard
-                              movie={movie} onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }} />
+                              movie={movie}
+                              user={user}
+                              onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }}
+                              onFavoriteAdded={handleAddToFavorites}
+                              onFavoriteRemoved={handleRemoveFromFavorites}
+                            />
                           </Col>
                         ))}
                       </Row>
@@ -177,7 +192,7 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Col xs={12} md={10} lg={8} xl={6}>
-                        <ProfileView user={user} movies={movies}/>
+                        <ProfileView user={user} movies={movies} />
                       </Col>
                     </>
                   )}

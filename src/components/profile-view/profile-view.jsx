@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button } from "react-bootstrap";
-
 import { MovieCard } from '../movie-card/movie-card';
 
 export const ProfileView = ({ movies, user }) => {
@@ -28,7 +27,6 @@ export const ProfileView = ({ movies, user }) => {
         console.log('Fetched user data: ', data);
         setFormValues({
           username: data.username,
-         // password: data.password,
           email: data.email,
           birthday: data.birthday
         });
@@ -50,7 +48,6 @@ export const ProfileView = ({ movies, user }) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    //const userId = userData._id;
     //update object only with changed fields
     const updatedValues = {};
     if (formValues.username !== user.username) {

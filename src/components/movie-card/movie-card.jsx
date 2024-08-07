@@ -3,8 +3,41 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./movie-card.scss";
+import { useState } from "react";
 
-export const MovieCard = ({ movie }) => {
+export const MovieCard = ({ movie, user, onFavoriteAdded, onFavoriteRemoved }) => {
+
+  const handleAddToFavorites = () => {
+    fetch(`https://moviemate-mk9e.onrender.com/users/${user._id}/favorites/${movie.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then((response) => response.json())
+      .then((data) => {
+        onFavoriteAdded(data);
+        console.log('Movie added to favorites: ', data);
+      }).catch((error) => {
+        console.error('Error adding movie to favorites: ', error.message);
+      });
+  };
+
+  const handleRemoveFromFavorites = () => {
+    fetch(`https://moviemate-mk9e.onrender.com/users/${user._id}/favorites/${movie.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then((response) => response.json())
+      .then((data) => {
+        onFavoriteRemoved(data);
+        console.log('Movie removed from favorites: ', data);
+      }).catch((error) => {
+        console.error('Error removing movie from favorites: ', error.message);
+      });
+  };
 
   return (
     <Card bg="primary" text="text-primary">
@@ -13,7 +46,17 @@ export const MovieCard = ({ movie }) => {
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.genreName}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.title)}`}>
-          <Button variant="outline-secondary">View details</Button>{' '}
+          <Button variant="outline-secondary">View details</Button>
+        </Link> <br />
+        <Link>
+          <Button variant="outline-secondary" onClick={handleAddToFavorites}>
+            Add to favorites
+          </Button>
+        </Link> <br />
+        <Link>
+          <Button variant="outline-secondary" onClick={handleRemoveFromFavorites}>
+            Remove from favorites
+          </Button>
         </Link>
       </Card.Body>
     </Card>
