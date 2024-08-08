@@ -185,7 +185,7 @@ export const MainView = () => {
                     <Col className="main-view">The list is empty!</Col>
                   ) : (
                     <>
-                      <Col xs={12} md={10} lg={8} xl={6}>
+                      <Col xs={12} md={10} >
                         <ProfileView user={user} movies={movies} />
                       </Col>
                     </>

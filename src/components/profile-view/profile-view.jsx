@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import { MovieCard } from '../movie-card/movie-card';
 
 export const ProfileView = ({ movies, user }) => {
@@ -114,16 +114,25 @@ export const ProfileView = ({ movies, user }) => {
         )}
       </div>
       <div>
-        <h1>Favorite Movies</h1>
+        <>
+        <Row>
+          <Col>
+          <h1>Favorite Movies</h1>
+          </Col>
+        </Row>
+        <Row>
         {favMovies.length === 0 ? (
           <p>No favorite movies yet.</p>
         ) : (
           favMovies.map((movie) => (
-            <div key={movie.id} className="favorite-movie">
+            <Col sm={12} md={3} key={movie.id} className="favorite-movie">
               <MovieCard movie={movie} />
-            </div>
+            </Col>
           ))
         )}
+          
+        </Row>
+        </>
       </div>
       <div>
         <h1>Update User data</h1>
