@@ -80,6 +80,26 @@ export const ProfileView = ({ movies, user }) => {
     user.email = formValues.email;
   };
 
+  const deleteUser = () => {
+    fetch(`https://moviemate-mk9e.onrender.com/users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }
+    })
+      .then((response) => response.text())
+      .then(() => {
+        alert('User deleted successfully');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.open('/signup', '_self');
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
   return (
     <>
       <div className="profile-view">
@@ -158,6 +178,12 @@ export const ProfileView = ({ movies, user }) => {
             Update
           </Button>
         </Form>
+      </div>
+      <div>
+        <h1>Delete User Account</h1>
+        <Button onClick={deleteUser}>
+          Delete
+        </Button>
       </div>
     </>
   );
