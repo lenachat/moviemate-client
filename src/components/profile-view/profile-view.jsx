@@ -181,7 +181,7 @@ export const ProfileView = ({ movies, user }) => {
       </div>
       <div>
         <h1>Delete User Account</h1>
-        <Button onClick={deleteUser}>
+        <Button variant="danger" onClick={deleteUser}>
           Delete
         </Button>
       </div>

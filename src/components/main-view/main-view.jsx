@@ -63,7 +63,7 @@ export const MainView = () => {
     setUser(updatedUser);
   };
 
-  const MovieDetail = () => {
+  const SimilarMovies = () => {
     const { movieTitle } = useParams();
     const selectedMovie = movies.find((m) => m.title === movieTitle);
 
@@ -138,7 +138,7 @@ export const MainView = () => {
                     />
                     <hr />
                     <h3>Similar Movies</h3>
-                    <MovieDetail />
+                    <SimilarMovies />
                   </Col>
                 )
                 }
@@ -169,12 +169,6 @@ export const MainView = () => {
                           </Col>
                         ))}
                       </Row>
-                      <br />
-                      <Col xs="auto" className="cols">
-                        <Button variant="outline-secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>
-                          Logout
-                        </Button>
-                      </Col>
                     </>
                   )}
               </>

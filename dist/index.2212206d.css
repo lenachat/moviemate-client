@@ -31261,17 +31261,17 @@ button.navbar-toggler {
   border: 2px solid #f6f6f4;
 }
 
-.nav-link {
+a.nav-link {
   color: #f6f6f4;
 }
 
-.nav-link:hover {
+a.nav-link:hover {
   color: #f6f6f4;
   text-decoration: underline;
   transition: all .3s;
 }
 
-.navbar-toggler-icon {
+span.navbar-toggler-icon {
   background-image: url("data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-list\" viewBox=\"0 0 16 16\" style=\"fill: white;\"><path fill-rule=\"evenodd\" d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5\"/></svg>");
 }
 
@@ -31280,7 +31280,7 @@ button.navbar-toggler {
 }
 
 .movies-container {
-  padding-top: 115px;
+  padding-top: 40px;
 }
 
 :root, [data-bs-theme="light"] {
