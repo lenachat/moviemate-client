@@ -67,16 +67,6 @@ export const MovieCard = ({ movie, user, onFavoriteAdded, onFavoriteRemoved }) =
         <Link to={`/movies/${encodeURIComponent(movie.title)}`}>
           <Button variant="outline-secondary">View details</Button>
         </Link> <br />
-        {/* <Link>
-          <Button variant="outline-secondary" onClick={handleAddToFavorites}>
-            Add to favorites
-          </Button>
-        </Link> <br />
-        <Link>
-          <Button variant="link" onClick={handleRemoveFromFavorites}>
-            Remove from favorites
-          </Button>
-        </Link> */}
         <br />
         <ButtonGroup>
           <ToggleButton

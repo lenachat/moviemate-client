@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Button, Row, Col } from "react-bootstrap";
-import { MovieCard } from '../movie-card/movie-card';
+import { UserInfo } from './user-info';
+import { FavoriteMovies } from './favorite-movies';
+import { UpdateUser } from './update-user';
+import { DeleteUser } from './delete-user';
 
 export const ProfileView = ({ movies, user }) => {
   const [userData, setUserData] = useState(user);
@@ -48,7 +50,6 @@ export const ProfileView = ({ movies, user }) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    //update object only with changed fields
     const updatedValues = {};
     if (formValues.username !== user.username) {
       updatedValues.username = formValues.username;
@@ -102,98 +103,10 @@ export const ProfileView = ({ movies, user }) => {
 
   return (
     <>
-      <div className="profile-view">
-        <h1>Profile</h1>
-        {user ? (
-          <div>
-            <p><strong>Username:</strong> {user.username}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-          </div>
-        ) : (
-          <p>No user data available.</p>
-        )}
-      </div>
-      <div>
-        <>
-        <Row>
-          <Col>
-          <h1>Favorite Movies</h1>
-          </Col>
-        </Row>
-        <Row>
-        {favMovies.length === 0 ? (
-          <p>No favorite movies yet.</p>
-        ) : (
-          favMovies.map((movie) => (
-            <Col sm={12} md={3} key={movie.id} className="favorite-movie">
-              <MovieCard movie={movie} />
-            </Col>
-          ))
-        )}
-          
-        </Row>
-        </>
-      </div>
-      <div>
-        <h1>Update User data</h1>
-        <Form onSubmit={handleUpdate}>
-          <Form.Group>
-            <Form.Label>
-              Username:
-              <Form.Control className="custom-input-text-color"
-                type="text"
-                name="username"
-                value={formValues.username}
-                onChange={handleInputChange}
-                minLength="2"
-              />
-            </Form.Label>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>
-              Password:
-              <Form.Control className="custom-input-text-color"
-                type="password"
-                name="password"
-                value={formValues.password}
-                onChange={handleInputChange}
-                minLength="8"
-              />
-            </Form.Label>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>
-              Email:
-              <Form.Control className="custom-input-text-color"
-                type="email"
-                name="email"
-                value={formValues.email}
-                onChange={handleInputChange}
-              />
-            </Form.Label>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>
-              Date of Birth:
-              <Form.Control className="custom-input-text-color"
-                type="date"
-                name="birthday"
-                value={formValues.birthday}
-                onChange={handleInputChange}
-              />
-            </Form.Label>
-          </Form.Group>
-          <Button type="submit">
-            Update
-          </Button>
-        </Form>
-      </div>
-      <div>
-        <h1>Delete User Account</h1>
-        <Button variant="danger" onClick={deleteUser}>
-          Delete
-        </Button>
-      </div>
+      <UserInfo username={user.username} email={user.email} />
+      <FavoriteMovies favMovies={favMovies} />
+      <UpdateUser handleUpdate={handleUpdate} handleInputChange={handleInputChange} formValues={formValues} />
+      <DeleteUser deleteUser={deleteUser} />
     </>
   );
 };
