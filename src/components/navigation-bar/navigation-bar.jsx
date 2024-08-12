@@ -1,9 +1,11 @@
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import "./navigation-bar.scss";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
+  const userId = user ? user._id : null;
+
   return (
     <Navbar expand="false">
       <Container>
@@ -27,7 +29,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                 <Nav.Link as={Link} to="/movies">
                     Movies
                 </Nav.Link>
-                <Nav.Link as={Link} to="/profile">
+                <Nav.Link as={Link} to={`/users/${userId}`}>
                     Profile
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>

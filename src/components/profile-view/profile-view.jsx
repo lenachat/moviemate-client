@@ -3,6 +3,7 @@ import { UserInfo } from './user-info';
 import { FavoriteMovies } from './favorite-movies';
 import { UpdateUser } from './update-user';
 import { DeleteUser } from './delete-user';
+import { useParams } from 'react-router-dom';
 
 export const ProfileView = ({ movies, user }) => {
   const [userData, setUserData] = useState(user);
@@ -14,6 +15,7 @@ export const ProfileView = ({ movies, user }) => {
   });
   const [favMovies, setFavMovies] = useState([]);
   const userId = userData._id;
+  console.log('User ID: ', userId);
 
   useEffect(() => {
     fetch(`https://moviemate-mk9e.onrender.com/users/${userId}`, {
@@ -109,4 +111,5 @@ export const ProfileView = ({ movies, user }) => {
       <DeleteUser deleteUser={deleteUser} />
     </>
   );
+
 };

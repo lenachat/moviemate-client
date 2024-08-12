@@ -4,9 +4,9 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
-import { Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import "./main-view.scss";
 
@@ -63,6 +63,12 @@ export const MainView = () => {
     setUser(updatedUser);
   };
 
+  const handleLogin = (user, token) => {
+    setUser(user); // Benutzerstatus aktualisieren
+    setToken(token); // Token aktualisieren (falls benötigt)
+  };
+
+
   const SimilarMovies = () => {
     const { movieTitle } = useParams();
     const selectedMovie = movies.find((m) => m.title === movieTitle);
@@ -77,7 +83,7 @@ export const MainView = () => {
           <Col key={movie.id}>
             <MovieCard
               movie={movie}
-              onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }}
+              //onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }}
               user={user}
               onFavoriteAdded={handleAddToFavorites}
               onFavoriteRemoved={handleRemoveFromFavorites}
@@ -116,7 +122,7 @@ export const MainView = () => {
                   <Navigate to="/movies" />
                 ) : (
                   <Col xs={12} md={10} lg={8} xl={6} >
-                    <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />
+                    <LoginView onLoggedIn={handleLogin} />
                   </Col>
                 )
                 }
@@ -162,7 +168,7 @@ export const MainView = () => {
                             <MovieCard
                               movie={movie}
                               user={user}
-                              onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }}
+                              //onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }}
                               onFavoriteAdded={handleAddToFavorites}
                               onFavoriteRemoved={handleRemoveFromFavorites}
                             />
@@ -175,14 +181,12 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/profile"
+            path="/users/:userId"
             element={
               <>
                 {!user ?
                   (
                     <Navigate to="/login" replace />
-                  ) : movies.length === 0 ? (
-                    <Col className="main-view">The list is empty!</Col>
                   ) : (
                     <>
                       <Col xs={12} md={10} >
