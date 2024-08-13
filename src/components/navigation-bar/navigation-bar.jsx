@@ -1,20 +1,20 @@
-import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import { Container, Nav, Navbar, Button, Form } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 
 import "./navigation-bar.scss";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, onSearchMovie }) => {
   const userId = user ? user._id : null;
 
   return (
-    <Navbar expand="false">
+    <Navbar collapseOnSelect expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/movies">
           <h1>MovieMate</h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="">
             {!user ? (
               <>
                 <Nav.Link as={Link} to="/login">
@@ -35,6 +35,17 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                 <Nav.Link onClick={onLoggedOut}>
                     Logout
                 </Nav.Link>
+                <div className="navbar-search-container">
+            <Form className="d-flex search-form" onSubmit={(e) => e.preventDefault()}>
+            <Form.Control
+              type="search"
+              placeholder="Search for Movies"
+              className=""
+              aria-label="Search"
+              onChange={onSearchMovie}
+            />
+          </Form>
+          </div>
               </>
             )}
           </Nav>

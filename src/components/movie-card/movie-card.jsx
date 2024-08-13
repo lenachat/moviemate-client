@@ -100,11 +100,12 @@ MovieCard.propTypes = {
       death: PropTypes.string
     }),
     imagePath: PropTypes.string,
-    actors: PropTypes.arrayOf(PropTypes.string),
+    actors: PropTypes.string,
     year: PropTypes.string,
     age: PropTypes.string,
     rating: PropTypes.string,
     length: PropTypes.string,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired
+  // onFavoriteAdded: PropTypes.func.isRequired,
+  // onFavoriteRemoved: PropTypes.func.isRequired
 };

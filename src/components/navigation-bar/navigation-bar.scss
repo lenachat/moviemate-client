@@ -30,6 +30,7 @@ button.navbar-toggler {
 }
 
 a.nav-link {
+  margin: 0 5px;
   color: $text-primary;
 }
 
@@ -41,4 +42,21 @@ a.nav-link:hover {
 
 span.navbar-toggler-icon {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16" style="fill: white;"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></svg>');
+}
+
+.search-form > input.form-control {
+  color: $text-primary;
+  border-color: $secondary;
+}
+
+.search-form > input.form-control::placeholder {
+  color: $text-primary;
+}
+
+.navbar-search-container{
+  margin-left: 5px;
+}
+
+#basic-navbar-nav {
+ justify-content: end;
 }

@@ -14,10 +14,11 @@ export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
-//loads user data whenever token changes (on login)
+  //loads user data whenever token changes (on login)
   useEffect(() => {
     if (user && token) {
       fetch(`https://moviemate-mk9e.onrender.com/users/${user._id}`, {
@@ -26,14 +27,14 @@ export const MainView = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
-    }).then((response) => response.json())
-    .then((data) => {
-      setUser(data);
-    })
-    .catch((error) => {
-      console.error(error.message);
-    });
-  }
+      }).then((response) => response.json())
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
+    }
   }, [token]);
 
   useEffect(() => {
@@ -69,6 +70,7 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromAPI);
+        setFilteredMovies(moviesFromAPI);
       }).catch((error) => {
         console.error("Error fetching movies: ", error);
       });
@@ -87,6 +89,21 @@ export const MainView = () => {
   const handleLogin = (user, token) => {
     setUser(user);
     setToken(token);
+  };
+
+  const onSearchMovie = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+
+    if (!searchValue) {
+      setFilteredMovies(movies); // Show all movies if search is cleared
+      return;
+    }
+
+    const filtered = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchValue)
+    );
+
+    setFilteredMovies(filtered); // Update the filtered movies state
   };
 
   const SimilarMovies = () => {
@@ -115,7 +132,9 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
+      <NavigationBar user={user} movies={movies}
+        onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }}
+        onSearchMovie={onSearchMovie} />
       <Row className="justify-content-center movies-container">
         <Routes>
           <Route
@@ -195,7 +214,7 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Row className="justify-content-center">
-                        {movies.map((movie) => (
+                        {filteredMovies.map((movie) => (
                           <Col xs={12} sm={6} md={4} lg={3} className="cols" key={movie.id}>
                             <MovieCard
                               movie={movie}
