@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const FavoriteMovies = ({ favMovies }) => {
+export const FavoriteMovies = ({ favMovies, user }) => {
   return (
     <div>
       <>
@@ -17,7 +17,10 @@ export const FavoriteMovies = ({ favMovies }) => {
           ) : (
             favMovies.map((movie) => (
               <Col sm={12} md={3} key={movie.id} className="favorite-movie">
-                <MovieCard movie={movie} />
+                <MovieCard 
+                movie={movie} 
+                user={user} 
+              />
               </Col>
             ))
           )}

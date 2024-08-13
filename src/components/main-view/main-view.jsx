@@ -17,6 +17,25 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
+//loads user data whenever token changes (on login)
+  useEffect(() => {
+    if (user && token) {
+      fetch(`https://moviemate-mk9e.onrender.com/users/${user._id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+    }).then((response) => response.json())
+    .then((data) => {
+      setUser(data);
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
+  }
+  }, [token]);
+
   useEffect(() => {
     if (!user || !token) {
       return;
@@ -57,17 +76,18 @@ export const MainView = () => {
 
   const handleAddToFavorites = (updatedUser) => {
     setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
   };
 
   const handleRemoveFromFavorites = (updatedUser) => {
     setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
   };
 
   const handleLogin = (user, token) => {
-    setUser(user); // Benutzerstatus aktualisieren
-    setToken(token); // Token aktualisieren (falls benötigt)
+    setUser(user);
+    setToken(token);
   };
-
 
   const SimilarMovies = () => {
     const { movieTitle } = useParams();
@@ -83,7 +103,6 @@ export const MainView = () => {
           <Col key={movie.id}>
             <MovieCard
               movie={movie}
-              //onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }}
               user={user}
               onFavoriteAdded={handleAddToFavorites}
               onFavoriteRemoved={handleRemoveFromFavorites}
@@ -99,6 +118,19 @@ export const MainView = () => {
       <NavigationBar user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
       <Row className="justify-content-center movies-container">
         <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/movies" />
+                ) : (
+                  <Navigate to="/login" />
+                )
+                }
+              </>
+            }
+          />
           <Route
             path="/signup"
             element={
@@ -168,7 +200,6 @@ export const MainView = () => {
                             <MovieCard
                               movie={movie}
                               user={user}
-                              //onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie); }}
                               onFavoriteAdded={handleAddToFavorites}
                               onFavoriteRemoved={handleRemoveFromFavorites}
                             />

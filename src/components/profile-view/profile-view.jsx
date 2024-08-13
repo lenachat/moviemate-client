@@ -3,47 +3,18 @@ import { UserInfo } from './user-info';
 import { FavoriteMovies } from './favorite-movies';
 import { UpdateUser } from './update-user';
 import { DeleteUser } from './delete-user';
-import { useParams } from 'react-router-dom';
 
 export const ProfileView = ({ movies, user }) => {
-  const [userData, setUserData] = useState(user);
   const [formValues, setFormValues] = useState({
     username: user.username,
     password: '',
     email: user.email,
     birthday: user.birthday,
   });
-  const [favMovies, setFavMovies] = useState([]);
-  const userId = userData._id;
-  console.log('User ID: ', userId);
 
-  useEffect(() => {
-    fetch(`https://moviemate-mk9e.onrender.com/users/${userId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      }
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setUserData(data);
-        console.log('Fetched user data: ', data);
-        setFormValues({
-          username: data.username,
-          email: data.email,
-          birthday: data.birthday
-        });
-        let favoriteMovies = String(data.favorites);
-        console.log('Favorite movies: ', favoriteMovies);
-        let filteredMovies = movies.filter((movie) => favoriteMovies.includes(movie.id));
-        setFavMovies(filteredMovies);
-        console.log('Filtered movies: ', filteredMovies);
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-  }, [user._id, movies]);
+  const userId = user._id;
+
+  let filteredMovies = movies.filter((movie) => user.favorites.includes(movie.id));
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -74,7 +45,6 @@ export const ProfileView = ({ movies, user }) => {
       .then((data) => {
         alert('Profile updated successfully');
         setUserData(data);
-        console.log(data);
       })
       .catch((error) => {
         console.error("Error: " + error.message);
@@ -106,7 +76,7 @@ export const ProfileView = ({ movies, user }) => {
   return (
     <>
       <UserInfo username={user.username} email={user.email} />
-      <FavoriteMovies favMovies={favMovies} />
+      <FavoriteMovies favMovies={filteredMovies} user={user} />
       <UpdateUser handleUpdate={handleUpdate} handleInputChange={handleInputChange} formValues={formValues} />
       <DeleteUser deleteUser={deleteUser} />
     </>

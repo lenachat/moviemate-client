@@ -48,7 +48,7 @@ export const UpdateUser = ({ handleUpdate, handleInputChange, formValues }) => {
               <Form.Control className="custom-input-text-color"
                 type="date"
                 name="birthday"
-                value={formValues.birthday}
+                value={formValues.birthday?.split('T')[0]}
                 onChange={handleInputChange}
               />
             </Form.Label>
