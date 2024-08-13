@@ -23,6 +23,15 @@ input.custom-input-text-color.form-control {
   color: $text-primary;
 }
 
+.welcome-message-container {
+  text-align: center;
+  color: $text-primary;
+  margin-bottom: 35px;
+}
+
+.welcome-message-container>h1 {
+  color: $secondary;
+}
 
 .name-input:required {
   border: 1px solid red;

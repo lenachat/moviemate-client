@@ -42,63 +42,70 @@ export const SignupView = () => {
   };
 
   return (
-    <Card border="secondary">
-      <Card.Body>
-        <Card.Title>Sign up</Card.Title>
-        <Card.Text>
-          <Form onSubmit={handleSignup}>
-            <Form.Group>
-              <Form.Label>
-                Username:
-                <Form.Control className="name-input custom-input-text-color"
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                  minLength="2"
-                />
-              </Form.Label>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>
-                Password:
-                <Form.Control className="password-input custom-input-text-color"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  pattern="\w{8,30}"
-                />
-              </Form.Label>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>
-                Email:
-                <Form.Control className="email-input custom-input-text-color"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </Form.Label>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>
-                Date of Birth:
-                <Form.Control className="custom-input-text-color"
-                  type="date"
-                  value={birthday}
-                  onChange={(e) => setBirthday(e.target.value)}
-                  placeholder='YYYY-MM-DD'
-                />
-              </Form.Label>
-            </Form.Group>
-            <Button type="submit">
-              Sign Up
-            </Button>
-          </Form>
-        </Card.Text>
-      </Card.Body>
-    </Card>
+    <>
+      <div class="welcome-message-container">
+        <h1>Welcome to MovieMate!</h1>
+        <h5>This is your ultimate companion for exploring the world of cinema!</h5>
+      </div>
+
+      <Card border="secondary">
+        <Card.Body>
+          <Card.Title>Sign up</Card.Title>
+          <Card.Text>
+            <Form onSubmit={handleSignup}>
+              <Form.Group>
+                <Form.Label>
+                  Username:
+                  <Form.Control className="name-input custom-input-text-color"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    minLength="2"
+                  />
+                </Form.Label>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  Password:
+                  <Form.Control className="password-input custom-input-text-color"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    pattern="\w{8,30}"
+                  />
+                </Form.Label>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  Email:
+                  <Form.Control className="email-input custom-input-text-color"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </Form.Label>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  Date of Birth:
+                  <Form.Control className="custom-input-text-color"
+                    type="date"
+                    value={birthday}
+                    onChange={(e) => setBirthday(e.target.value)}
+                    placeholder='YYYY-MM-DD'
+                  />
+                </Form.Label>
+              </Form.Group>
+              <Button type="submit">
+                Sign Up
+              </Button>
+            </Form>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </>
   );
 };

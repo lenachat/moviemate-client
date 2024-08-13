@@ -65,11 +65,11 @@ export const MovieCard = ({ movie, user, onFavoriteAdded, onFavoriteRemoved }) =
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.genreName}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.title)}`}>
-          <Button variant="outline-secondary">View details</Button>
-        </Link> <br />
+          <Button variant="outline-secondary" className="details-button">View details</Button>
+        </Link>
         <br />
         <ButtonGroup>
-          <ToggleButton
+          <ToggleButton className="toggle-favorite"
             id="toggle-favorite"
             type="checkbox"
             variant="outline-secondary"

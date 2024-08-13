@@ -22,7 +22,7 @@ $box-shadow: 10px 5px 10px #0c152a;
 
 .card-body {
   color: $text-primary;
-  margin: 0 15px;
+  margin: 0 7px;
 }
 
 .row {
@@ -32,13 +32,35 @@ $box-shadow: 10px 5px 10px #0c152a;
 .movie-title.col-md-auto {
   font-size: 1.5em;
   padding-left: 0;
+  padding-right: 30px;
   color: $text-primary;
 }
 
 .movie-details.col-md-auto {
   font-size: 0.8em;
-  padding-right: 0;
+  padding-left: 0;
+  margin-right: 10px;
+  margin-top: 10px;
   color: $text-primary;
+}
+
+
+.movie-details.col-md-auto:last-child {
+  margin-top: 6px;
+}
+
+.movie-details>img {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  margin-top: -5px;
+}
+
+.age-restriction {
+  background-color: rgb(105, 106, 106);
+  border-radius: 3px;
+  padding: 4px;
+  max-width: fit-content;
 }
 
 .accordion {
@@ -46,19 +68,28 @@ $box-shadow: 10px 5px 10px #0c152a;
   color: $text-primary;
 }
 
-.accordion-body {
+div.accordion-body {
   background-color: $primary;
   color: $text-primary;
-  border: 1px solid $text-primary;
+  border: none;
+  padding: 10px 12px;
 }
 
 .accordion .accordion-item {
   border: none;
 }
 
+.accordion-header {
+  background-color: $primary;
+  color: $text-primary;
+  border: none;
+}
+
 button.accordion-button {
   padding: 0;
   background-color: $primary;
+  color: $text-primary;
+  border: none;
 }
 
 button.accordion-button.collapsed {
@@ -67,14 +98,19 @@ button.accordion-button.collapsed {
 }
 
 button.accordion-button:not(.collapsed) {
-  padding: 0 5px;
+  padding: 0;
+  background-color: $primary;
+  color: $text-primary;
+  border: none;
 
 }
 
 button.accordion-button:not(.collapsed)::after {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/></svg>');
+  margin-bottom: 12px;
 }
 
-button.accordion-button::after {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16" style="fill: white;"><path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/></svg>');
+.accordion-header>button.accordion-button::after {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16" style="color: white;"><path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/></svg>');
+  margin-bottom: 12px;
 }

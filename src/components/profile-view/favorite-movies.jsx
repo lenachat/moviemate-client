@@ -11,16 +11,16 @@ export const FavoriteMovies = ({ favMovies, user }) => {
             <h1>Favorite Movies</h1>
           </Col>
         </Row>
-        <Row>
+        <Row md={12}>
           {favMovies.length === 0 ? (
             <p>No favorite movies yet.</p>
           ) : (
             favMovies.map((movie) => (
-              <Col sm={12} md={3} key={movie.id} className="favorite-movie">
-                <MovieCard 
-                movie={movie} 
-                user={user} 
-              />
+              <Col sm={12} md={6} lg={4} xl={3} key={movie.id} className="favorite-movie">
+                <MovieCard
+                  movie={movie}
+                  user={user}
+                />
               </Col>
             ))
           )}
