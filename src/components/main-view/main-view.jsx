@@ -240,7 +240,10 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Col xs={12} md={10} >
-                        <ProfileView user={user} movies={movies} />
+                        <ProfileView user={user} movies={movies} 
+                         onFavoriteAdded={handleAddToFavorites}
+                         onFavoriteRemoved={handleRemoveFromFavorites}
+                        />
                       </Col>
                     </>
                   )}

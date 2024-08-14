@@ -4,7 +4,7 @@ import { FavoriteMovies } from './favorite-movies';
 import { UpdateUser } from './update-user';
 import { DeleteUser } from './delete-user';
 
-export const ProfileView = ({ movies, user }) => {
+export const ProfileView = ({ movies, user,  onFavoriteAdded, onFavoriteRemoved }) => {
   const [formValues, setFormValues] = useState({
     username: user.username,
     password: '',
@@ -76,7 +76,12 @@ export const ProfileView = ({ movies, user }) => {
   return (
     <>
       <UserInfo username={user.username} email={user.email} />
-      <FavoriteMovies favMovies={filteredMovies} user={user} />
+      <FavoriteMovies 
+        favMovies={filteredMovies} 
+        user={user} 
+        onFavoriteAdded={onFavoriteAdded} 
+        onFavoriteRemoved={onFavoriteRemoved} 
+      />
       <UpdateUser handleUpdate={handleUpdate} handleInputChange={handleInputChange} formValues={formValues} />
       <DeleteUser deleteUser={deleteUser} />
     </>

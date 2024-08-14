@@ -106,6 +106,6 @@ MovieCard.propTypes = {
     rating: PropTypes.string,
     length: PropTypes.string,
   }).isRequired,
-  // onFavoriteAdded: PropTypes.func.isRequired,
-  // onFavoriteRemoved: PropTypes.func.isRequired
+    onFavoriteAdded: PropTypes.func.isRequired,
+    onFavoriteRemoved: PropTypes.func.isRequired
 };

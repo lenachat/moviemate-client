@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const FavoriteMovies = ({ favMovies, user }) => {
+export const FavoriteMovies = ({ favMovies, user, onFavoriteAdded, onFavoriteRemoved }) => {
   return (
     <div>
       <>
@@ -20,6 +20,8 @@ export const FavoriteMovies = ({ favMovies, user }) => {
                 <MovieCard
                   movie={movie}
                   user={user}
+                  onFavoriteAdded={onFavoriteAdded}
+                  onFavoriteRemoved={onFavoriteRemoved}
                 />
               </Col>
             ))
