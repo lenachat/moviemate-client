@@ -1,10 +1,11 @@
-import { Button, Card, Accordion, Container, Row, Col } from "react-bootstrap";
+import { Button, Card, Accordion, Container, Row, Col, ButtonGroup, ToggleButton } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../../hooks/useFavorites";
 
 import "./movie-view.scss";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user, onFavoriteAdded, onFavoriteRemoved }) => {
   const { movieTitle } = useParams();
 
   // Find the movie with the matching ID
@@ -14,6 +15,8 @@ export const MovieView = ({ movies }) => {
   if (!movie) {
     return <div>Movie not found</div>;
   }
+
+  const { isFavorite, handleToggleFavorite } = useFavorites(movie, user, onFavoriteAdded, onFavoriteRemoved);
 
   return (
     <Card bg="primary" text="text-primary">
@@ -53,8 +56,21 @@ export const MovieView = ({ movies }) => {
           </Accordion>
         </Card.Text>
         <Link to={`/movies`}>
-          <Button variant="outline-secondary">Go Back</Button>
+          <Button variant="outline-secondary" className="go-back-button">Go Back</Button>
         </Link>
+        <br />
+        <ButtonGroup>
+          <ToggleButton className="toggle-favorite"
+            id="toggle-favorite"
+            type="checkbox"
+            variant="outline-secondary"
+            checked={isFavorite}
+            value="1"
+            onClick={handleToggleFavorite}
+          >
+            {isFavorite ? "Remove from favorites" : "Add to favorites"}
+          </ToggleButton>
+        </ButtonGroup>
       </Card.Body>
     </Card>
   );

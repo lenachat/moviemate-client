@@ -192,6 +192,9 @@ export const MainView = () => {
                   <Col xs={12} md={10} lg={8} xl={6}>
                     <MovieView
                       movies={movies}
+                      user = {user}
+                      onFavoriteAdded={handleAddToFavorites}
+                      onFavoriteRemoved={handleRemoveFromFavorites}
                     />
                     <hr />
                     <h3>Similar Movies</h3>
