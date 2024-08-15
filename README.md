@@ -61,4 +61,4 @@ To set up the project locally, follow these steps:
 
 ## Deployment
 
-The application is hosted online and can be accessed at [deployment URL].
+The application is hosted online on Netlify and can be accessed at https://moviemate-online.netlify.app .
