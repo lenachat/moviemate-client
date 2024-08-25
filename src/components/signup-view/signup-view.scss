@@ -19,8 +19,26 @@ $text-primary: #F6F6F4;
   color: $text-primary;
 }
 
-input.custom-input-text-color.form-control {
+.form-label > input::placeholder {
+  color: #325bb3;
+  font-size: 0.9em;
+}
+
+input.form-control:focus {
   color: $text-primary;
+}
+
+input.form-control {
+  color: $text-primary;
+}
+
+.form-control {
+  color: $text-primary;
+}
+
+input.birthday-input.form-control {
+  color: $text-primary;
+  font-size: 0.9em;
 }
 
 .welcome-message-container {
@@ -33,26 +51,34 @@ input.custom-input-text-color.form-control {
   color: $secondary;
 }
 
-.name-input:required {
-  border: 1px solid red;
-}
+// .name-input:required {
+//   border: 1px solid red;
+// }
 
 .name-input:valid {
   border: 1px solid green;
 }
 
-.password-input:required {
-  border: 1px solid red;
-}
+// .password-input:required {
+//   border: 1px solid red;
+// }
 
 .password-input:valid {
   border: 1px solid green;
 }
 
-.email-input:required {
-  border: 1px solid red;
-}
+// .email-input:required {
+//   border: 1px solid red;
+// }
 
 .email-input:valid {
   border: 1px solid green;
+}
+
+.link p {
+  color: #325bb3;
+  text-decoration: underline #325bb3;;
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: 0.9em;
 }

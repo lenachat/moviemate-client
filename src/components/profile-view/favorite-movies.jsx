@@ -8,6 +8,7 @@ export const FavoriteMovies = ({ favMovies, user, onFavoriteAdded, onFavoriteRem
       <>
         <Row>
           <Col>
+            <br />
             <h1>Favorite Movies</h1>
           </Col>
         </Row>

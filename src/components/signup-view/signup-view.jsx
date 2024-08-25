@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import "./signup-view.scss";
-
 import { Form, Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
@@ -56,42 +56,45 @@ export const SignupView = () => {
               <Form.Group>
                 <Form.Label>
                   Username:
-                  <Form.Control className="name-input custom-input-text-color"
+                  <Form.Control className="name-input"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                     minLength="2"
+                    placeholder="required, min. 2 characters"
                   />
                 </Form.Label>
               </Form.Group>
               <Form.Group>
                 <Form.Label>
                   Password:
-                  <Form.Control className="password-input custom-input-text-color"
+                  <Form.Control className="password-input"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     pattern="\w{8,30}"
+                    placeholder="required, min. 8 characters"
                   />
                 </Form.Label>
               </Form.Group>
               <Form.Group>
                 <Form.Label>
                   Email:
-                  <Form.Control className="email-input custom-input-text-color"
+                  <Form.Control className="email-input"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    placeholder="required"
                   />
                 </Form.Label>
               </Form.Group>
               <Form.Group>
                 <Form.Label>
                   Date of Birth:
-                  <Form.Control className="custom-input-text-color"
+                  <Form.Control className="birthday-input"
                     type="date"
                     value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
@@ -103,6 +106,9 @@ export const SignupView = () => {
                 Sign Up
               </Button>
             </Form>
+            <Link to={`/login`} className="link">
+              <p>Already have an account? Login here.</p>
+            </Link>
           </Card.Text>
         </Card.Body>
       </Card>

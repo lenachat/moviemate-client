@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 export const DeleteUser = ({ deleteUser }) => {
   return (
   <div>
+    <br />
     <h1>Delete User Account</h1>
     <Button variant="danger" onClick={deleteUser}>
       Delete

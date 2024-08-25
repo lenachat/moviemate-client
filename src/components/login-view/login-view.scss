@@ -19,6 +19,19 @@ $text-primary: #F6F6F4;
   color: $text-primary;
 }
 
-input.custom-input-text-color.form-control {
+input.form-control {
   color: $text-primary;
+}
+
+input.form-control:focus {
+  color: $text-primary;
+}
+
+.link p {
+  color: #325bb3;
+  text-decoration: underline #325bb3;
+  ;
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: 0.9em;
 }

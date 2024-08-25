@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import "./login-view.scss";
 
@@ -63,6 +64,9 @@ export const LoginView = ({ onLoggedIn }) => {
             </Form.Group>
             <Button type="submit">Submit</Button>
           </Form>
+          <Link to={`/signup`} className="link">
+            <p>Don't have an account? Sign up here.</p>
+          </Link>
         </Card.Text>
       </Card.Body>
     </Card>
