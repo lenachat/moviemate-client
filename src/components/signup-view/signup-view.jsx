@@ -8,9 +8,18 @@ export const SignupView = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
+  const [validated, setValidated] = useState(false);
 
   const handleSignup = (event) => {
+    const form = event.currentTarget;
     event.preventDefault();
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+      setValidated(true);
+      return;
+    }
+
+    setValidated(true);
 
     const data = {
       username: username,
@@ -25,20 +34,19 @@ export const SignupView = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
-    }).then((response) => response.json())
-      .then((data) => {
-        console.log("Signup response: ", data);
-        if (data) {
-          alert("Signup successful");
-          window.location.reload();
-        } else {
-          response.json().then((data) => {
-            alert("Signup failed " + data.message);
-          });
-        }
-      }).catch((error) => {
-        alert('Error:', error.message);
-      });
+    }).then((response) => {
+      if (response.ok) {
+        alert("Signup successful");
+        window.location.reload();
+        return response.json();
+      } else {
+        response.json().then((data) => {
+          alert("Signup failed " + data.message);
+        });
+      }
+    }).catch((error) => {
+      alert('Error:', error.message);
+    });
   };
 
   return (
@@ -52,8 +60,8 @@ export const SignupView = () => {
         <Card.Body>
           <Card.Title>Sign up</Card.Title>
           <Card.Text>
-            <Form onSubmit={handleSignup}>
-              <Form.Group>
+            <Form noValidate onSubmit={handleSignup} validated={validated}>
+              <Form.Group hasValidation>
                 <Form.Label>
                   Username:
                   <Form.Control className="name-input"
@@ -64,9 +72,10 @@ export const SignupView = () => {
                     minLength="2"
                     placeholder="required, min. 2 characters"
                   />
+                  <Form.Control.Feedback type="invalid">Please enter a name.</Form.Control.Feedback>
                 </Form.Label>
               </Form.Group>
-              <Form.Group>
+              <Form.Group hasValidation>
                 <Form.Label>
                   Password:
                   <Form.Control className="password-input"
@@ -77,9 +86,10 @@ export const SignupView = () => {
                     pattern="\w{8,30}"
                     placeholder="required, min. 8 characters"
                   />
+                  <Form.Control.Feedback type="invalid">Please enter a password with at least 8 characters.</Form.Control.Feedback>
                 </Form.Label>
               </Form.Group>
-              <Form.Group>
+              <Form.Group hasValidation>
                 <Form.Label>
                   Email:
                   <Form.Control className="email-input"
@@ -89,9 +99,10 @@ export const SignupView = () => {
                     required
                     placeholder="required"
                   />
+                  <Form.Control.Feedback type="invalid">Please enter a valid email address.</Form.Control.Feedback>
                 </Form.Label>
               </Form.Group>
-              <Form.Group>
+              <Form.Group hasValidation>
                 <Form.Label>
                   Date of Birth:
                   <Form.Control className="birthday-input"
@@ -100,6 +111,7 @@ export const SignupView = () => {
                     onChange={(e) => setBirthday(e.target.value)}
                     placeholder='YYYY-MM-DD'
                   />
+                  <Form.Control.Feedback type="invalid">Please enter your birthday.</Form.Control.Feedback>
                 </Form.Label>
               </Form.Group>
               <Button type="submit">
