@@ -41,7 +41,8 @@ export const SignupView = () => {
         return response.json();
       } else {
         response.json().then((data) => {
-          alert("Signup failed " + data.message);
+          alert(`Error: ${data.message}`);
+
         });
       }
     }).catch((error) => {
