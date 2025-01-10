@@ -6,8 +6,8 @@ import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { SimilarMovies } from "../similar-movies/similar-movies";
 import "./main-view.scss";
 
 export const MainView = () => {
@@ -106,30 +106,6 @@ export const MainView = () => {
     setFilteredMovies(filtered); // Update the filtered movies state
   };
 
-  const SimilarMovies = () => {
-    const { movieTitle } = useParams();
-    const selectedMovie = movies.find((m) => m.title === movieTitle);
-
-    const similarMovies = movies.filter(
-      (movie) => movie.genreName === selectedMovie.genreName && movie.title !== selectedMovie.title
-    );
-
-    return (
-      <Row md={2}>
-        {similarMovies.map((movie) => (
-          <Col key={movie.id}>
-            <MovieCard
-              movie={movie}
-              user={user}
-              onFavoriteAdded={handleAddToFavorites}
-              onFavoriteRemoved={handleRemoveFromFavorites}
-            />
-          </Col>
-        ))}
-      </Row>
-    );
-  };
-
   return (
     <BrowserRouter>
       <NavigationBar user={user} movies={movies}
@@ -192,13 +168,13 @@ export const MainView = () => {
                   <Col xs={12} md={10} lg={8} xl={6}>
                     <MovieView
                       movies={movies}
-                      user = {user}
+                      user={user}
                       onFavoriteAdded={handleAddToFavorites}
                       onFavoriteRemoved={handleRemoveFromFavorites}
                     />
                     <hr />
                     <h3>Similar Movies</h3>
-                    <SimilarMovies />
+                    <SimilarMovies user={user} movies={movies} onFavoriteAdded={handleAddToFavorites} onFavoriteRemoved={handleRemoveFromFavorites} />
                   </Col>
                 )
                 }
@@ -243,9 +219,9 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Col xs={12} md={10} >
-                        <ProfileView user={user} movies={movies} 
-                         onFavoriteAdded={handleAddToFavorites}
-                         onFavoriteRemoved={handleRemoveFromFavorites}
+                        <ProfileView user={user} movies={movies}
+                          onFavoriteAdded={handleAddToFavorites}
+                          onFavoriteRemoved={handleRemoveFromFavorites}
                         />
                       </Col>
                     </>
